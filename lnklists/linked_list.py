@@ -271,6 +271,16 @@ class LinkedList:
         joined.delete(0)
         return joined
 
+    @staticmethod
+    def remove_duplicates_sorted(head):
+        current = head
+        while current is not None and current.next is not None:
+            if current.value == current.next.value:
+                current.next = current.next.next
+            else:
+                current = current.next
+        return head
+
 
 if __name__ == "__main__":
     print("\n-- new linked list")
