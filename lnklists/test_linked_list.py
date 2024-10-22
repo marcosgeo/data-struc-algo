@@ -204,3 +204,19 @@ def test_linked_list_join(list1, list2, expected):
         lnk_list2.append(value)
     result = LinkedList.join(lnk_list1.head, lnk_list2.head)
     assert list(result) == expected
+
+
+@pytest.mark.parametrize("list1, expected", [
+    ([1, 1, 2], [1, 2]),
+    ([1, 1, 2, 3, 3], [1, 2, 3]),
+    ([1, 1, 1], [1]),
+])
+def test_linked_list_remove_duplicates_sorted(list1, expected):
+    lnk_list_1 = LinkedList()
+    for value in list1:
+        lnk_list_1.append(value)
+    lnk_list_2 = LinkedList()
+    for value in expected:
+        lnk_list_2.append(value)
+    LinkedList.remove_duplicates_sorted(lnk_list_1.head)
+    assert list(lnk_list_1) == list(lnk_list_2)
