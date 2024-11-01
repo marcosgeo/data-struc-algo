@@ -281,6 +281,25 @@ class LinkedList:
                 current = current.next
         return head
 
+    @staticmethod
+    def remove_value(head: Node, value: int) -> list:
+        current: Node = head
+        previous: Node = Node(None)
+        while current:
+            if current.value == value:
+                if not previous.value:
+                    head = current.next
+                else:
+                    previous.next = current.next
+            else:
+                previous = current
+            current = current.next
+        result = []
+        while head:
+            result.append(head.value)
+            head = head.next
+        return result
+
 
 if __name__ == "__main__":
     print("\n-- new linked list")
