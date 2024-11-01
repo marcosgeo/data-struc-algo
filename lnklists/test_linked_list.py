@@ -220,3 +220,16 @@ def test_linked_list_remove_duplicates_sorted(list1, expected):
         lnk_list_2.append(value)
     LinkedList.remove_duplicates_sorted(lnk_list_1.head)
     assert list(lnk_list_1) == list(lnk_list_2)
+
+
+@pytest.mark.parametrize("list1, value, expected", [
+    ([1, 2, 6, 3, 4, 5, 6], 6, [1, 2, 3, 4, 5]),
+    ([], 1, []),
+    ([7, 7, 7, 7], 7, [])
+])
+def test_remove_value(list1, value, expected):
+    lnk_list = LinkedList()
+    for val in list1:
+        lnk_list.append(val)
+    result = LinkedList.remove_value(lnk_list.head, value)
+    assert result == expected
