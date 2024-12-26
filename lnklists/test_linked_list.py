@@ -233,3 +233,18 @@ def test_remove_value(list1, value, expected):
         lnk_list.append(val)
     result = LinkedList.remove_value(lnk_list.head, value)
     assert result == expected
+
+
+@pytest.mark.parametrize("list1, expected", [
+    ([1, 2, 3, 4, 5], [5, 4, 3, 2, 1]),
+    ([1, 2], [2, 1]),
+    ([8, 5, 6, 9, 3, 2], [2, 3, 9, 6, 5, 8]),
+])
+def test_reverse_list(list1, expected):
+    lnk_list = LinkedList()
+    for val in list1:
+        lnk_list.append(val)
+    result = LinkedList.reverse_list(lnk_list)
+
+    assert list(result) == expected
+
