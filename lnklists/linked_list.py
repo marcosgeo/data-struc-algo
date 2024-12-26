@@ -45,7 +45,7 @@ class LinkedList:
         raise StopIteration
 
     def append(self, value):
-        if not value:
+        if value is None:
             print(f"Invalid parameter: {value}")
             return self
         new_node = Node(value)
@@ -312,6 +312,44 @@ class LinkedList:
             lnk_list.head = previous
 
         return lnk_list
+
+    def is_palindrome(self, head: Node) -> bool:
+        if self.length > 105 or self.length < 1:
+            return False
+        list_items = list(self)
+        items = len(list_items) // 2
+        for i, value in enumerate(list_items[:items]):
+            if value != list_items[-(i+1)]:
+                return False
+        return True
+
+    def is_palindrome_sln(self, head: None):
+        """Commented course solution for palindrome linked list"""
+        # pointers to traverse the linked list
+        slow = fast = head
+
+        # the fast pointer moves twice as fast as the slow pointer
+        # so, by the time fast reaches the end, slow will be at the middle of the linked list
+        while fast and fast.next:
+            slow = slow.next  # move slow one step forward
+            fast = fast.next.next  # move fast two steps forward
+
+        # starting to reverse the sencond half of the linked list
+        prev = None
+        while slow:
+            _next = slow.next  # save the next node
+            slow.next = prev  # reverse the slow node pointing next to previous node
+            prev = slow  # move prev one step forward
+            slow = _next  # move slow one step forward
+
+        # compare the first half and the second half
+        tail = prev  # only for clarification
+        while tail:
+            if head.value != tail.value:
+                return False
+            head = head.next  # move to the right
+            tail = tail.next  # move to the left
+        return True
 
 
 if __name__ == "__main__":

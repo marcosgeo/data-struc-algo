@@ -248,3 +248,28 @@ def test_reverse_list(list1, expected):
 
     assert list(result) == expected
 
+
+@pytest.mark.parametrize("list1, expected", [
+    ([1, 2, 2, 1], True),
+    ([1, 3, 2, 1], False),
+    ([1, 3, 5, 7, 9, 7, 5, 3, 1], True),
+    ([0, 2, 4, 6, 8, 7, 6, 4, 2, 0], False),
+    ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], False),
+    ([0, 2, 4, 6, 8, 6, 4, 2, 0], True),
+    ([1, 2, 3, 4, 5, 6], False),
+])
+def test_is_palindrome(list1, expected):
+    lnk_list = LinkedList()
+    for val in list1:
+        lnk_list.append(val)
+    result = lnk_list.is_palindrome_sln(lnk_list.head)
+    assert result == expected
+
+
+"""
+iter 0: slow = 9; prev = -; next = 7; fast = 1 (end); 
+iter 1: slow = 7; prev = 9; next = 5; fast = 1 (end); 
+iter 2: slow = 5; prev = 7; next = 3; fast = 1 (end); 
+iter 3: slow = 3; prev = 5; next = 1; fast = 1 (end); 
+iter 4: slow = 1; prev = 3; next = -; fast = 1 (end); 
+"""
