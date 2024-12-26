@@ -300,6 +300,19 @@ class LinkedList:
             head = head.next
         return result
 
+    @staticmethod
+    def reverse_list(lnk_list: "LinkedList"):
+        current = lnk_list.head
+        previous = None
+        while current:
+            _next = current.next
+            current.next = previous
+            previous = current
+            current = _next
+            lnk_list.head = previous
+
+        return lnk_list
+
 
 if __name__ == "__main__":
     print("\n-- new linked list")
