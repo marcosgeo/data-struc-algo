@@ -35,3 +35,14 @@ class BasicStack:
         """Remove all items from the stack."""
         self.list.clear()
         return self
+
+
+class LimitedStack(BasicStack):
+    """Implements a stack with a limited size."""
+    def __init__(self, max_size):
+        self.max_size = max_size
+        self.list = []
+
+    def isfull(self):
+        """Check if the stack is full."""
+        return len(self.list) >= self.max_size

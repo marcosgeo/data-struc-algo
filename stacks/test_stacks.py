@@ -1,7 +1,7 @@
 
 import pytest
 
-from . import BasicStack
+from . import BasicStack, LimitedStack
 
 
 def test_stack_init():
@@ -82,3 +82,17 @@ def test_stack_clear():
     assert stack.peek() is None
     assert stack.pop() is None
     assert str(stack) == ""
+
+
+@pytest.mark.parametrize("max_size, items, expected", [
+    (3, [1, 2, 3], True),
+    (4, [1, 2, 3, 4], True),
+    (3, [1, 2], False),
+    (3, [3, 4, 5], True),
+])
+def test_limited_stack_init(max_size, items, expected):
+    stack = LimitedStack(max_size)
+    for item in items:
+        stack.push(item)
+    assert stack.isfull() == expected
+    assert len(stack.list) <= max_size
