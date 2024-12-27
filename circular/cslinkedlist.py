@@ -15,7 +15,18 @@ class CSLinkedList:
         self.tail = None
         self.length = 0
 
-    def append(self, value):
+    def __str__(self) -> str:
+        if self.head is None:
+            return ""
+        temp_node = self.head
+        result = str(self.head.value)
+        while temp_node.next != self.head:
+            temp_node = temp_node.next
+            result += f" -> {temp_node.value}"
+        result += f" -> {self.head.value}"
+        return result
+
+    def append(self, value) -> None:
         new_node: Node = Node(value)
         if self.head is None:
             self.head = new_node
