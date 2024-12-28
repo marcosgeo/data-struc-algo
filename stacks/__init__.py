@@ -46,3 +46,11 @@ class LimitedStack(BasicStack):
     def isfull(self):
         """Check if the stack is full."""
         return len(self.list) >= self.max_size
+
+    def push(self, value):
+        """Add an item to the stack if it is not full."""
+        if self.isfull():
+            print("\nStack is full, cannot add item.")
+            return self
+        self.list.append(value)
+        return self

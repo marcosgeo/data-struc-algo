@@ -96,3 +96,30 @@ def test_limited_stack_init(max_size, items, expected):
         stack.push(item)
     assert stack.isfull() == expected
     assert len(stack.list) <= max_size
+
+
+@pytest.mark.parametrize("max_size, items, expected", [
+    (3, [1, 2, 3], [1, 2, 3]),
+    (3, [1, 2, 3, 4], [1, 2, 3]),
+    (5, [1, 2], [1, 2]),
+    (4, [3, 4, 5], [3, 4, 5]),
+])
+def test_limited_stack_push(max_size, items, expected):
+    stack = LimitedStack(max_size)
+    for item in items:
+        stack.push(item)
+    assert stack.list == expected
+
+
+@pytest.mark.parametrize("max_size, items, expected", [
+    (3, [1, 2, 3], [1, 2]),
+    (3, [1, 2, 3, 4], [1, 2]),
+    (5, [1, 2], [1]),
+    (4, [3, 4, 5], [3, 4]),
+])
+def test_limited_stack_pop(max_size, items, expected):
+    stack = LimitedStack(max_size)
+    for item in items:
+        stack.push(item)
+    stack.pop()
+    assert stack.list == expected
