@@ -74,6 +74,16 @@ class LinkedList:
             yield current_node
             current_node = current_node.next
 
+    def __repr__(self):
+        result = ""
+        temp_node = self.head
+        while temp_node:
+            result += str(temp_node.value)
+            if temp_node.next is not None:
+                result += " -> "
+            temp_node = temp_node.next if temp_node.next else ""
+        return result
+
 
 class Stack:
     """Implements a stack data structure using a linked list."""
@@ -81,6 +91,18 @@ class Stack:
         """Initialize the stack."""""
         self.linked_list = LinkedList()
 
-    def isempty(self):
+    def __str__(self):
+        """Return a string representation of the stack."""
+        values = [str(x.value) for x in self.linked_list]
+        return "\n".join(values)
+
+    def isempty(self) -> bool:
         """Check is the stack is empty"""
         return self.linked_list.head is None
+
+    def push(self, value) -> object:
+        """Add an item to the stack."""
+        node = Node(value)
+        node.next = self.linked_list.head
+        self.linked_list.head = node
+        return self

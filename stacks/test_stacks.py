@@ -128,3 +128,17 @@ def test_limited_stack_pop(max_size, items, expected):
 def test_stack_constructor():
     stack = Stack()
     assert stack.linked_list.head is None
+
+
+@pytest.mark.parametrize("items, expected", [
+    ([1, 2, 3], "3\n2\n1"),
+    ([], ""),
+    ([1], "1"),
+    ([1, 2], "2\n1"),
+    ([1, 2, 3, 4], "4\n3\n2\n1"),
+])
+def test_linked_stack_push(items, expected):
+    stack = Stack()
+    for item in items:
+        stack.push(item)
+    assert str(stack) == expected
