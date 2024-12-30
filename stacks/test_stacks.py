@@ -1,7 +1,7 @@
 
 import pytest
 
-from . import BasicStack, LimitedStack
+from . import BasicStack, LimitedStack, Stack
 
 
 def test_stack_init():
@@ -123,3 +123,8 @@ def test_limited_stack_pop(max_size, items, expected):
         stack.push(item)
     stack.pop()
     assert stack.list == expected
+
+
+def test_stack_constructor():
+    stack = Stack()
+    assert stack.linked_list.head is None

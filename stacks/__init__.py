@@ -54,3 +54,33 @@ class LimitedStack(BasicStack):
             return self
         self.list.append(value)
         return self
+
+
+class Node:
+    """Implements a node for a linked list."""
+    def __init__(self, value=None):
+        self.value = value
+        self.next = None
+
+
+class LinkedList:
+    """Implements a linked list data structure."""
+    def __init__(self):
+        self.head = None
+
+    def __iter__(self):
+        current_node = self.head
+        while current_node:
+            yield current_node
+            current_node = current_node.next
+
+
+class Stack:
+    """Implements a stack data structure using a linked list."""
+    def __init__(self):
+        """Initialize the stack."""""
+        self.linked_list = LinkedList()
+
+    def isempty(self):
+        """Check is the stack is empty"""
+        return self.linked_list.head is None
