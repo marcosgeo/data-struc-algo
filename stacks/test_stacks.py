@@ -142,3 +142,44 @@ def test_linked_stack_push(items, expected):
     for item in items:
         stack.push(item)
     assert str(stack) == expected
+
+
+@pytest.mark.parametrize("items, expected", [
+    ([1, 2, 3], 3),
+    ([], None),
+    ([1], 1),
+    ([2, 1], 1),
+    ([1, 2, 3, 4], 4),
+])
+def test_linked_stack_pop(items, expected):
+    stack = Stack()
+    for item in items:
+        stack.push(item)
+    assert stack.pop() == expected
+
+
+@pytest.mark.parametrize("items, expected", [
+    ([1, 2, 3], 3),
+    ([4, 3, 2], 2),
+    ([1], 1),
+    ([], None),
+    ([1, 2, 3, 4], 4),
+])
+def test_linked_stack_peek(items, expected):
+    stack = Stack()
+    for item in items:
+        stack.push(item)
+    assert stack.peek() == expected
+
+
+@pytest.mark.parametrize("items, expected", [
+    ([1, 2, 3], True),
+    ([], None),
+])
+def test_linked_stack_clear(items, expected):
+    stack = Stack()
+    for item in items:
+        stack.push(item)
+    result = stack.clear()
+    assert result == expected
+    assert stack.linked_list.head is None

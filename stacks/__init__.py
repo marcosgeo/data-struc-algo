@@ -106,3 +106,25 @@ class Stack:
         node.next = self.linked_list.head
         self.linked_list.head = node
         return self
+
+    def pop(self):
+        """Remove and return the last item added to the stack."""
+        if not self.linked_list.head:
+            return None
+        last = self.linked_list.head
+        self.linked_list.head = last.next
+        return last.value
+
+    def peek(self):
+        """Return the value of the last item added to the stack"""
+        if not self.linked_list.head:
+            return None
+        return self.linked_list.head.value
+
+    def clear(self):
+        """Remove all items from the stack."""
+        if not self.linked_list.head:
+            return None
+        self.linked_list.head = None
+        return True
+
