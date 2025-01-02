@@ -32,3 +32,18 @@ class BasicQueue:
     def clear(self):
         self.items = []
         return self
+
+
+class CircularQueue:
+    """
+    A circular queue implementation using list.
+    """
+    def __init__(self, max_size: int):
+        self.max_size = max_size
+        self.items = []
+        self.start = -1
+        self.end = -1
+
+    def __str__(self):
+        values = [str(x) for x in self.items]
+        return " ".join(values)

@@ -1,6 +1,6 @@
 import pytest
 
-from . import BasicQueue
+from . import BasicQueue, CircularQueue
 
 
 def test_basic_queue_init():
@@ -59,3 +59,10 @@ def test_basic_queue_clear():
     queue.clear()
     assert queue.items == []
     assert queue.isempty() is True
+
+
+def test_circular_queue_init():
+    queue = CircularQueue(3)
+    assert queue.items == []
+    assert str(queue) == ""
+
