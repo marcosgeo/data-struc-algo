@@ -59,3 +59,13 @@ class CircularQueue:
         else:
             self.end += 1
         return self
+
+    def dequeue(self) -> object:
+        if self.start == -1:
+            return None
+        item = self.items[self.start]
+        self.start = (self.start + 1) % self.max_size  # 2 % 5 = 2; 5 % 5 = 0
+        if self.start == self.end:
+            self.start = -1
+            self.end = -1
+        return item

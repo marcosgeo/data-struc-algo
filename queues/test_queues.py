@@ -81,3 +81,16 @@ def test_circular_queue_enqueue(items, start, end):
     assert queue.items[queue.end] == end
 
 
+@pytest.mark.parametrize("items, expected, start, end", [
+    ([], None, -1, -1),
+    ([1, 2, 3], 1, 1, 2),
+    ([1, 2, 3, 4, 5, 6], 1, 1, 5),
+    ([1], 1, -1, -1),
+])
+def test_circular_queue_dequeue(items, expected, start, end):
+    queue = CircularQueue(len(items))
+    for item in items:
+        queue.enqueue(item)
+    assert queue.dequeue() == expected
+    assert queue.start == start
+    assert queue.end == end
