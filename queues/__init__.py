@@ -12,3 +12,23 @@ class BasicQueue:
 
     def isempty(self) -> bool:
         return self.items == []
+
+    def enqueue(self, item) -> object:
+        if not item:
+            return None
+        self.items.append(item)  # O(n) complexity, since added to the end
+        return self
+
+    def dequeue(self):
+        if self.isempty():
+            return None
+        return self.items.pop(0)  # O(n) complexity, couse shift all elements to the left
+
+    def peek(self):
+        if self.isempty():
+            return None
+        return self.items[0]
+
+    def clear(self):
+        self.items = []
+        return self
