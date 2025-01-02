@@ -47,3 +47,15 @@ class CircularQueue:
     def __str__(self):
         values = [str(x) for x in self.items]
         return " ".join(values)
+
+    def enqueue(self, item) -> object:
+        if len(self.items) == self.max_size:
+            return None
+        self.items.append(item)
+        if self.start == -1:
+            self.start = 0
+        if self.end + 1 == self.max_size:
+            self.end = 0
+        else:
+            self.end += 1
+        return self
