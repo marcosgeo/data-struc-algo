@@ -94,3 +94,21 @@ def test_circular_queue_dequeue(items, expected, start, end):
     assert queue.dequeue() == expected
     assert queue.start == start
     assert queue.end == end
+
+
+@pytest.mark.parametrize("items, expected", [
+    ([], False),
+    ([1, 2, 3], True),
+    ([1, 2, 3, 4, 5], True)
+])
+def test_circular_queue_isfull(items, expected):
+    queue = CircularQueue(len(items) + 1)
+    for item in items:
+        queue.enqueue(item)
+    if expected is False:
+        assert queue.isfull() == expected
+    else:
+        assert len(queue.items) == len(items)
+        queue.enqueue(10)
+        assert queue.isfull() == expected
+

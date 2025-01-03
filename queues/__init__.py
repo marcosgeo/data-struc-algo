@@ -59,6 +59,7 @@ class CircularQueue:
         else:
             self.end += 1
         return self
+        # all operations are O(1) complexity
 
     def dequeue(self) -> object:
         if self.start == -1:
@@ -69,3 +70,27 @@ class CircularQueue:
             self.start = -1
             self.end = -1
         return item
+        # all operations are O(1) complexity
+
+    def peek(self):
+        if self.start == -1:
+            return None
+        return self.items[self.start]
+
+    def clear(self):
+        self.items = []
+        self.start = -1
+        self.end = -1
+        return self
+
+    def isempty(self):
+        if self.start == -1:
+            return True
+        return False
+
+    def isfull(self) -> bool:
+        if self.end + 1 == self.start:
+            return True
+        if self.start == 0 and self.end == self.max_size -1:
+            return True
+        return False
