@@ -173,4 +173,16 @@ class LinkedListQueue:
         else:
             self.linked_list.head = self.linked_list.head.next
         return value
-        # all operations are (1) time and space complexity
+        # all operations are O(1) time and space complexity
+
+    def peek(self):
+        if self.isempty():
+            return None
+        return self.linked_list.head.value
+        # all operations are O(1) time and space complexity
+
+    def clear(self):
+        self.linked_list.head = None
+        self.linked_list.tail = None
+        return self
+        # all operations are O(1) time and space complexity
