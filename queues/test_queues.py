@@ -118,3 +118,20 @@ def test_linkedlist_queue_init():
     assert queue.linked_list.head is None
     assert queue.linked_list.tail is None
     assert str(queue) == ""
+
+
+@pytest.mark.parametrize("items, expected, head, tail", [
+    ([3, 2, 1], "3 -> 2 -> 1", 3, 1),
+    ([1, 2, 3], "1 -> 2 -> 3", 1, 3),
+    ([1, 2, 3, 4, 5], "1 -> 2 -> 3 -> 4 -> 5", 1, 5),
+    ([], "", None, None)
+])
+def test_linkedlist_queue_enqueue(items, expected, head, tail):
+    queue = LinkedListQueue()
+    for item in items:
+        queue.enqueue(item)
+    assert str(queue) == expected
+    if head and tail:
+        assert queue.linked_list.head.value == head
+        assert queue.linked_list.tail.value == tail
+

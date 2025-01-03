@@ -142,3 +142,18 @@ class LinkedListQueue:
 
     def __str__(self):
         return str(self.linked_list)
+
+    def enqueue(self, value):
+        """
+        Add an item to the queue.
+        """
+        new_node = Node(value)
+        if self.linked_list.head is None:
+            self.linked_list.head = new_node
+            self.linked_list.tail = new_node
+        else:
+            self.linked_list.tail.next = new_node
+            self.linked_list.tail = new_node
+        return self
+        # all operations are O(1) time complexity
+        # space complexity is O(1) for each  element added to  the queue
