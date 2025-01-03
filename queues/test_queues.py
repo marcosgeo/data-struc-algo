@@ -1,6 +1,6 @@
 import pytest
 
-from . import BasicQueue, CircularQueue
+from . import BasicQueue, CircularQueue, LinkedListQueue
 
 
 def test_basic_queue_init():
@@ -112,3 +112,9 @@ def test_circular_queue_isfull(items, expected):
         queue.enqueue(10)
         assert queue.isfull() == expected
 
+
+def test_linkedlist_queue_init():
+    queue = LinkedListQueue()
+    assert queue.linked_list.head is None
+    assert queue.linked_list.tail is None
+    assert str(queue) == ""

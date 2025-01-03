@@ -94,3 +94,51 @@ class CircularQueue:
         if self.start == 0 and self.end == self.max_size -1:
             return True
         return False
+
+
+class Node:
+    """
+    Implements a node for a linked list.
+    """
+    def __init__(self, value=None):
+        self.value = value
+        self.next = None
+
+    def __str(self):
+        return str(self.value)
+
+
+class LinkedList:
+    """
+    Implements a linked list.
+    """
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def __iter__(self):
+        node = self.head
+        while node:
+            yield node
+            node = node.next
+
+    def __str__(self):
+        result = ""
+        node = self.head
+        while node:
+            result += str(node.value)
+            if node.next is not None:
+                result += " -> "
+            node = node.next
+        return result
+
+
+class LinkedListQueue:
+    """
+    Implements a queue using a linked list.
+    """
+    def __init__(self):
+        self.linked_list = LinkedList()
+
+    def __str__(self):
+        return str(self.linked_list)
