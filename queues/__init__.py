@@ -157,3 +157,20 @@ class LinkedListQueue:
         return self
         # all operations are O(1) time complexity
         # space complexity is O(1) for each  element added to  the queue
+
+    def isempty(self):
+        if self.linked_list.head is None:
+            return True
+        return False
+
+    def dequeue(self):
+        if self.isempty():
+            return None
+        value = self.linked_list.head.value
+        if self.linked_list.head == self.linked_list.tail:
+            self.linked_list.head = None
+            self.linked_list.tail = None
+        else:
+            self.linked_list.head = self.linked_list.head.next
+        return value
+        # all operations are (1) time and space complexity

@@ -135,3 +135,21 @@ def test_linkedlist_queue_enqueue(items, expected, head, tail):
         assert queue.linked_list.head.value == head
         assert queue.linked_list.tail.value == tail
 
+
+def test_linkedlist_queue_isempty():
+    queue = LinkedListQueue()
+    assert queue.isempty() is True
+
+
+@pytest.mark.parametrize("items, expected", [
+    ([3, 2, 1], 3),
+    ([1, 2, 3], 1),
+    ([1, 2, 3, 4, 5], 1),
+    ([], None)
+])
+def test_linkedlist_queue_dequeue(items, expected):
+    queue = LinkedListQueue()
+    for item in items:
+        queue.enqueue(item)
+    value = queue.dequeue()
+    assert value == expected
