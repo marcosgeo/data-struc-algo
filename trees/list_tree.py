@@ -4,9 +4,9 @@ Tree using python list
 
 
 class TreeNode:
-    def __init__(self, data):
+    def __init__(self, data, children=[]):
         self.data = data
-        self.children = []
+        self.children = children
 
     def __str__(self, level=0):
         result = " " * level + str(self.data) + "\n"
