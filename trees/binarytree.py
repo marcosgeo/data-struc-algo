@@ -18,3 +18,12 @@ def pre_order_traversal(root_node: TreeNode, result=[]):
     pre_order_traversal(root_node.left_child, result)
     pre_order_traversal(root_node.right_child, result)
     return result
+
+
+def in_order_traversal(root_node: TreeNode, result=[]):
+    if not root_node:
+        return
+    in_order_traversal(root_node.left_child, result)
+    result.append(root_node.data)
+    in_order_traversal(root_node.right_child, result)
+    return result
