@@ -27,3 +27,12 @@ def in_order_traversal(root_node: TreeNode, result=[]):
     result.append(root_node.data)
     in_order_traversal(root_node.right_child, result)
     return result
+
+
+def post_order_traversal(root_node: TreeNode, result=[]):
+    if not root_node:
+        return
+    post_order_traversal(root_node.left_child, result)
+    post_order_traversal(root_node.right_child, result)
+    result.append(root_node.data)
+    return result
