@@ -104,7 +104,7 @@ class Node:
         self.value = value
         self.next = None
 
-    def __str(self):
+    def __str__(self):
         return str(self.value)
 
 

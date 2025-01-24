@@ -1,6 +1,7 @@
 """
 Binary tree using linked list
 """
+from queues import LinkedListQueue as Queue
 
 
 class TreeNode:
@@ -8,6 +9,9 @@ class TreeNode:
         self.data = data
         self.left_child = None
         self.right_child = None
+
+    def __str__(self):
+        return f"{self.data} -> "
 
 
 def pre_order_traversal(root_node: TreeNode, result=[]):
@@ -35,4 +39,21 @@ def post_order_traversal(root_node: TreeNode, result=[]):
     post_order_traversal(root_node.left_child, result)
     post_order_traversal(root_node.right_child, result)
     result.append(root_node.data)
+    return result
+
+
+def level_order_traversal(root_node: TreeNode, result=[]):
+    if not root_node:
+        return None
+    else:
+        custom_queue = Queue()
+        custom_queue.enqueue(root_node)
+        while not custom_queue.isempty():
+            node = custom_queue.dequeue()
+            result.append(node.data)
+            if node.left_child:
+                custom_queue.enqueue(node.left_child)
+            if node.right_child:
+                custom_queue.enqueue(node.right_child)
+
     return result

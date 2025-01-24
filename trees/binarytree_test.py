@@ -3,6 +3,7 @@ from .binarytree import (
     pre_order_traversal,
     in_order_traversal,
     post_order_traversal,
+    level_order_traversal,
 )
 
 
@@ -69,3 +70,26 @@ def test_should_traverse_tree_in_post_order():
         "right-left", "right-right", "right", "trunk"
     ]
 
+
+def test_should_traverse_tree_in_level_order():
+    root = TreeNode("trunk")  # N 1
+    left = TreeNode("left")  # N 2
+    right = TreeNode("right")  # N 3
+    root.left_child = left
+    root.right_child = right
+    left_left = left.left_child = TreeNode("left-left")  # N 4
+    left_right = left.right_child = TreeNode("left-right")  # N 5
+    right.left_child = TreeNode("right-left")  # N 6
+    right.right_child = TreeNode("right-right")  # N 7
+    left_left.left_child = TreeNode("left-left-left")  # N 8
+    left_left.right_child = TreeNode("left-left-right")  # N 9
+
+    result = level_order_traversal(root)
+
+    # N 1 -> N 2 -> N 3 -> N 4 -> N 5 -> N 6 -> N 7 -> N 8 -> N 9
+    assert result == [
+        "trunk", "left", "right",
+        "left-left", "left-right",
+        "right-left", "right-right",
+        "left-left-left", "left-left-right"
+    ]
