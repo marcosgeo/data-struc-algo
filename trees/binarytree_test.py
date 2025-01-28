@@ -7,7 +7,8 @@ from .binarytree import (
     in_order_traversal,
     post_order_traversal,
     level_order_traversal,
-    search
+    search,
+    insert,
 )
 
 
@@ -118,3 +119,21 @@ def test_should_search_in_tree(value, expected):
     assert result == expected
 
 
+def test_should_insert_new_node():
+    root = TreeNode("trunk")  # N 1
+    left = TreeNode("left")  # N 2
+    right = TreeNode("right")  # N 3
+    root.left_child = left
+    root.right_child = right
+    left_left = left.left_child = TreeNode("left-left")  # N 4
+    free_node = left.right_child = TreeNode("left-right")  # N 5
+    right.left_child = TreeNode("right-left")  # N 6
+    right.right_child = TreeNode("right-right")  # N 7
+    left_left.left_child = TreeNode("left-left-left")  # N 8
+    left_left.right_child = TreeNode("left-left-right")  # N 9
+
+    assert free_node.left_child is None
+
+    new_node: TreeNode = insert(root, "new-node")  # N 8
+    assert free_node.left_child.data == new_node.data
+    assert new_node.data == "new-node"
