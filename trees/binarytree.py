@@ -57,3 +57,19 @@ def level_order_traversal(root_node: TreeNode, result=[]):
                 custom_queue.enqueue(node.right_child)
 
     return result
+
+
+def search(root_node: TreeNode, value: str) -> str:
+    if not root_node:
+        return "Empty tree"
+    custom_queue = Queue()
+    custom_queue.enqueue(root_node)
+    while not custom_queue.isempty():
+        node = custom_queue.dequeue()
+        if node.data == value:
+            return node.data
+        if node.left_child:
+            custom_queue.enqueue(node.left_child)
+        if node.right_child:
+            custom_queue.enqueue(node.right_child)
+    return "Value not found"

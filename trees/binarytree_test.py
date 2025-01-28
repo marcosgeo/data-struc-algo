@@ -1,9 +1,13 @@
+import pytest
+
+
 from .binarytree import (
     TreeNode,
     pre_order_traversal,
     in_order_traversal,
     post_order_traversal,
     level_order_traversal,
+    search
 )
 
 
@@ -93,3 +97,24 @@ def test_should_traverse_tree_in_level_order():
         "right-left", "right-right",
         "left-left-left", "left-left-right"
     ]
+
+
+@pytest.mark.parametrize("value, expected", [
+    ("left-left", "left-left"),
+    ("inexistent", "Value not found"),
+    ("right", "right"),
+    ("right-left-left", "Value not found"),
+])
+def test_should_search_in_tree(value, expected):
+    root = TreeNode("trunk")
+    left = TreeNode("left")
+    right = TreeNode("right")
+    root.left_child = left
+    root.right_child = right
+    left_left = left.left_child = TreeNode("left-left")
+    left.right_child = TreeNode("left-right")
+
+    result = search(root, value)
+    assert result == expected
+
+
